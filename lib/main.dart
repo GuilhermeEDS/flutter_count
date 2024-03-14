@@ -36,47 +36,50 @@ class _HomeState extends State<Home> {
         Image.asset("imagens/restaurante.jpeg",
             fit: BoxFit.cover, height: 1000.0),
         Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Text("Pessoas: $_pessoa",
-                style: const TextStyle(
-                    color: Colors.greenAccent, fontWeight: FontWeight.bold)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    child: const Text(
-                      "+1",
-                      style:
-                          TextStyle(fontSize: 40.0, color: Colors.greenAccent),
-                    ),
-                    onPressed: () {
-                      _changePeople(1);
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: ElevatedButton(
-                    child: const Text(
-                      "-1",
-                      style: TextStyle(fontSize: 40.0, color: Colors.greenAccent),
-                    ),
-                    onPressed: () {
-                      _changePeople(-1);
-                    },
-                  ),
-                ),
-              ],
-            ),
-            Text(
+            Expanded(
+                child: Text("Pessoas: $_pessoa",
+                    style: const TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold))),
+            Center(
+                child: Text(
               _mensagem,
-              style:  const TextStyle(
-                  color: Colors.greenAccent,
+              style: const TextStyle(
+                  color: Colors.white,
                   fontStyle: FontStyle.italic,
                   fontSize: 30),
+            )),
+            Expanded(
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    ElevatedButton(
+                      child: const Text(
+                        "+",
+                        style: TextStyle(
+                            fontSize: 40.0,
+                            color: Colors.black,
+                            backgroundColor: Colors.green),
+                      ),
+                      onPressed: () {
+                        _changePeople(1);
+                      },
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.red)),
+                      child: const Text(
+                        "-",
+                        style: TextStyle(fontSize: 40.0, color: Colors.black),
+                      ),
+                      onPressed: () {
+                        _changePeople(-1);
+                      },
+                    ),
+                  ]),
             )
           ],
         )
