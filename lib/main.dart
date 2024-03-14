@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(const MaterialApp(title: "Contador de pessoas", home: Home()));
@@ -39,9 +40,14 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Expanded(
-                child: Text("Pessoas: $_pessoa",
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text("$_pessoa",
                     style: const TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold))),
+                        color: Colors.white, fontWeight: FontWeight.bold))
+              ],
+            )),
             Center(
                 child: Text(
               _mensagem,
@@ -56,12 +62,15 @@ class _HomeState extends State<Home> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(Colors.green),
+                      ),
                       child: const Text(
                         "+",
                         style: TextStyle(
-                            fontSize: 40.0,
-                            color: Colors.black,
-                            backgroundColor: Colors.green),
+                          fontSize: 40.0,
+                          color: Colors.black,
+                        ),
                       ),
                       onPressed: () {
                         _changePeople(1);
@@ -69,8 +78,8 @@ class _HomeState extends State<Home> {
                     ),
                     ElevatedButton(
                       style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.red)),
+                        backgroundColor: MaterialStatePropertyAll(Colors.red),
+                      ),
                       child: const Text(
                         "-",
                         style: TextStyle(fontSize: 40.0, color: Colors.black),
