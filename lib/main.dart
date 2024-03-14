@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(const MaterialApp(title: "Contador de pessoas", home: Home()));
@@ -9,10 +8,10 @@ class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
-  _HomeState createState() => _HomeState();
+  HomeState createState() => HomeState();
 }
 
-class _HomeState extends State<Home> {
+class HomeState extends State<Home> {
   int _pessoa = 0;
   String _mensagem = "Pode entrar!";
 
@@ -61,10 +60,15 @@ class _HomeState extends State<Home> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStatePropertyAll(Colors.green),
-                      ),
+                    Expanded(
+                        child: ElevatedButton(
+                      style: const ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.green),
+                          shape:
+                              MaterialStatePropertyAll<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.zero))),
                       child: const Text(
                         "+",
                         style: TextStyle(
@@ -75,11 +79,15 @@ class _HomeState extends State<Home> {
                       onPressed: () {
                         _changePeople(1);
                       },
-                    ),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStatePropertyAll(Colors.red),
-                      ),
+                    )),
+                    Expanded(
+                        child: ElevatedButton(
+                      style: const ButtonStyle(
+                          backgroundColor: MaterialStatePropertyAll(Colors.red),
+                          shape:
+                              MaterialStatePropertyAll<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.zero))),
                       child: const Text(
                         "-",
                         style: TextStyle(fontSize: 40.0, color: Colors.black),
@@ -87,7 +95,7 @@ class _HomeState extends State<Home> {
                       onPressed: () {
                         _changePeople(-1);
                       },
-                    ),
+                    )),
                   ]),
             )
           ],
