@@ -15,15 +15,15 @@ class Home extends StatefulWidget {
 class HomeState extends State<Home> {
   int _pessoa = 0;
   String _mensagem = "Pode entrar!";
-  double _tamanho = 0.0;
+  double _tamanho = 60.0;
 
   void _changePeople(int delta) {
     setState(() {
       _pessoa += delta;
       if (_pessoa >= 20) {
-        _mensagem = "Lotado, não pode entrar.";
+        _mensagem = "Lotado! Não pode entrar.";
         _pessoa = 20;
-        _tamanho = _pessoa * 10;
+        _tamanho = 60 + _pessoa * 3;
       } else if (_pessoa >= 0) {
         _mensagem = "Pode Entrar!";
         _tamanho = 60 + _pessoa * 3;
