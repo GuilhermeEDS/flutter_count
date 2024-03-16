@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -38,95 +39,131 @@ class HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        Image.asset("imagens/restaurante.jpeg",
-            fit: BoxFit.cover, height: 1000.0),
+        ColorFiltered(
+          colorFilter: const ColorFilter.mode(
+            Color.fromRGBO(0, 0, 0, 0.4),
+            BlendMode.darken,
+          ),
+          child: Image.asset(
+            "imagens/restaurante.jpeg",
+            fit: BoxFit.fitHeight,
+            height: 800.0,
+          ),
+        ),
         Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Expanded(
+              flex: 7,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 40.0),
                 child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Image.asset("imagens/logo_restaurante.png",
-                    fit: BoxFit.cover, height: 100),
-                const Text("Restaurante Mexicano",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                        decoration: TextDecoration.none)),
-                Expanded(
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("$_pessoa",
-                        style: GoogleFonts.bangers(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Column(
+                      children: [
+                        Image.asset(
+                          "imagens/logo_restaurante.png",
+                          fit: BoxFit.fitHeight,
+                          height: 100,
+                        ),
+                        const Text(
+                          "Los Cráneos Hermanos",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                        const Text(
+                          "Restaurante Mexicano",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.normal,
+                            fontSize: 12,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "$_pessoa",
+                          style: GoogleFonts.bangers(
                             textStyle: TextStyle(
-                                color: Colors.white,
-                                fontSize: _tamanho,
-                                fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.none)))
-                  ],
-                ))
-              ],
-            )),
-            Center(
-                child: Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: Text(
+                              color: Colors.white,
+                              fontSize: _tamanho,
+                              fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.none,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
                       _mensagem,
+                      textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: Colors.white,
                         fontStyle: FontStyle.italic,
                         fontSize: 25,
                         decoration: TextDecoration.none,
                       ),
-                    ))),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             Expanded(
+              flex: 3,
               child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Expanded(
-                        child: ElevatedButton(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Expanded(
+                    child: ElevatedButton(
                       style: const ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.green),
-                          shape:
-                              MaterialStatePropertyAll<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.zero))),
+                        backgroundColor: MaterialStatePropertyAll(Colors.green),
+                        shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.zero),
+                        ),
+                      ),
                       child: const Text(
                         "+",
-                        style: TextStyle(
-                          fontSize: 40.0,
-                          color: Colors.black,
-                        ),
+                        style: TextStyle(fontSize: 70.0, color: Colors.black),
                       ),
                       onPressed: () {
                         _changePeople(1);
                       },
-                    )),
-                    Expanded(
-                        child: ElevatedButton(
+                    ),
+                  ),
+                  Expanded(
+                    child: ElevatedButton(
                       style: const ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll(Colors.red),
-                          shape:
-                              MaterialStatePropertyAll<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.zero))),
+                        backgroundColor: MaterialStatePropertyAll(Colors.red),
+                        shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.zero,
+                          ),
+                        ),
+                      ),
                       child: const Text(
                         "-",
-                        style: TextStyle(fontSize: 40.0, color: Colors.black),
+                        style: TextStyle(fontSize: 70.0, color: Colors.black),
                       ),
                       onPressed: () {
                         _changePeople(-1);
                       },
-                    )),
-                  ]),
-            )
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
-        )
+        ),
       ],
     );
   }
